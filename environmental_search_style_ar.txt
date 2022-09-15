@@ -1,0 +1,35 @@
+.css-qrbaxs {
+direction: rtl;
+    font-size: 18px;
+    color: rgb(49, 51, 63);
+    margin-bottom: 7px;
+    height: auto;
+    min-height: 1.5rem;
+    vertical-align: middle;
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+}
+.st-ae {
+direction: rtl;
+}
+.st-dt {
+    padding-left: 0em;
+}
+.st-dr {
+    margin-left: 0px;
+    margin-right: 10px;
+}
+
+.st-cx {
+    padding-left: 0em;
+}
+.st-cv {
+    margin-left: 0px;
+    margin-right: 10px;
+}
+
+mark { 
+  color: #006400;
+}
