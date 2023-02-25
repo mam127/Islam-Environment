@@ -93,7 +93,7 @@ border-radius: 10px;
 
 .frontside .card,
 .backside .card {
-    min-height: 600px;
+    min-height: 650px;
 }
 
 .backside .card a {
