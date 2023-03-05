@@ -163,7 +163,7 @@ def kpi_card(streamlit_element, icon, title, text):
             </html>""", unsafe_allow_html = True)
 
 # About Card
-def about_card(title1,title2,title3,text1,text2_points_list,text3_points_list):
+def about_card(title1,title2,title3,text1,text2,text3_points_list):
     local_css("about_card_style.txt")
     st.markdown(f"""
     <div class="container">
@@ -178,10 +178,7 @@ def about_card(title1,title2,title3,text1,text2_points_list,text3_points_list):
     <span></span>
     <div class="content">
       <h2>{title2}</h2>
-      <ul>
-      <li>{text2_points_list[0]}</li><br>
-      <li>{text2_points_list[1]}</li>
-      </ul>
+      <p>{text2}</p>
     </div>
   </div>
   <div class="box">
@@ -241,6 +238,7 @@ st.set_page_config(layout='wide', page_icon = "https://icon-library.com/images/e
 menu_data = [
     {'id':"Environmental Search",'icon': "fa fa-search", 'label':"Environmental Search",'ttip':"Environmental Search"},
     {'id':"General Search",'icon': "fa fa-search", 'label':"General Search",'ttip':"General Search"},
+    {'id':"References",'icon': "fa fa-table", 'label':"References",'ttip':"References"},
     {'id':"Contact Us",'icon': "fa fa-user-circle", 'label':"Contact Us",'ttip':"Contact Us"}]
 
 over_theme = {'txc_inactive': 'white','menu_background':'#006400'}
@@ -257,11 +255,7 @@ menu_id = hc.nav_bar(
 if menu_id=='Home':
   col1,col2,col3 = st.columns([1.2,0.5,1])
 
-  col1.markdown(""" <img hspace=55>
-   <a href="https://www.aub.edu.lb/natureconservation/Pages/default.aspx" target="_blank">
-   <img src="https://img1.wsimg.com/isteam/ip/d395ec48-6223-46b4-b30b-579554763c25/AUB%20NCC.jpg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1280" style="width:100px;height:100px;">
-   </a>
-  """, unsafe_allow_html=True)
+  col1.image("logo.png", width=300)
   # Title
   col1.markdown("""<h1 style="font-size:56px;"><b>Islam and the  <font color="#006400">Environment</font></b></h1>""", unsafe_allow_html=True)
   
@@ -270,8 +264,8 @@ if menu_id=='Home':
 
   # Caption under the title
   col1.markdown("""<h1 style="font-size:20px; color:rgb(49, 51, 63); line-height: 1.5; font-weight: 505">
-    an initiative by the <a  style="color: #006400" href="https://www.aub.edu.lb/natureconservation/Pages/default.aspx" target="_blank"><b>Nature Conservation Center (NCC)</a>,
-    <a style="color: #006400" href="https://www.aub.edu.lb/fas/zayed/Pages/default.aspx" target="_blank"><b>Sheikh Zayed Chair for Arabic and Islamic Studies</a>, 
+    an initiative by the <a  style="color: #006400" href="https://www.aub.edu.lb/natureconservation/Pages/default.aspx" target="_blank"><b>Nature Conservation Center (AUB-NCC)</a> with the support of the 
+    <a style="color: #006400" href="https://www.aub.edu.lb/fas/zayed/Pages/default.aspx" target="_blank"><b>Sheikh Zayed Chair for Arabic and Islamic Studies</a>
     and <a style="color: #006400" href="https://www.aub.edu.lb/osb/MSBA/Pages/default.aspx" target="_blank"><b>MSc in Business Analytics Program (MSBA)</a> at the American University of Beirut
    </h1>
    """, unsafe_allow_html=True)
@@ -295,10 +289,7 @@ if menu_id=='Home':
 
   # Text under the about part
   st.markdown(f"""<p style="font-size: 20px; color:rgb(49, 51, 63); line-height: 1.5; font-weight: 505;">
-  Islam states that Man is the steward (khalifa) of God on Earth and teaches its followers to take care of the earth (‘imarat al-ard), 
-  as they will be held accountable for their actions in this life. Starting from the scriptural authority of the Quran, Muslims will
-   discern the importance of protecting the environment,
-    where approximately {env_verses_count} verses discuss environmental elements.</p>""",
+  Starting from the scriptural authority of the Quran, Muslims will discern the importance of protecting the environment, where approximately {env_verses_count} verses discuss environmental elements.</p>""",
     unsafe_allow_html=True)
   
   space(2)
@@ -308,11 +299,10 @@ if menu_id=='Home':
   title1= "Islam and the Environment",
   title2= "Goals",
   title3= "Services",
-  text1= "An ongoing project that aims to cover what Quran has mentioned regarding nature and environment.",
-  text2_points_list= ["Surveying the deep connections between Islamic teachings and environmentalism.",
-  "Strengthening the connection between modern Muslim Communities and the environment through interpreting scriptures and raising awareness."],
-  text3_points_list=["Searching in the Quran by environmental topics while presenting the relation of each verse with the environment.",
-    "Searching in the Quran by different words and phrases."]
+  text1= "This project will survey the deep and long-standing connections between Islamic teachings and environmentalism, the results of which are shared in this application. Subsequently, it will strengthen the connection between Islam and modern Muslim Communities and the environment through interpreting scriptures, raising awareness, and promoting policies.",
+  text2 = "Conveying the environmental elements found in the verses of the Quran through an application that is easy to navigate",
+  text3_points_list=["Searching the Quran by environmental topics, then presenting the association of each resulted verse with the environment",
+    "Searching the Quran using general words and phrases while presenting the association with the environment"]
     )
 
   space(6)
@@ -476,12 +466,7 @@ if menu_id=='Environmental Search':
       df["Link to Environment"].iloc[i],df["Reference"].iloc[i])
       
     if sc_html!="":
-      search_card(sc_html)
-
-    col1, col2, col3 = st.columns([1.5,1,1])
-    if col2.button('Show References'):
-      st.table(references_df)
-          
+      search_card(sc_html)          
       
     space(10)
     footer()
@@ -622,12 +607,7 @@ if menu_id=='Environmental Search':
       df["Link to Environment in Arabic"].iloc[i],df["Arabic Reference"].iloc[i])
       
     if sc_html!="":
-      search_card(sc_html)
-
-    col1, col2, col3 = st.columns([1.5,1,1])
-    if col2.button('Show References'):
-      st.table(references_df)
-          
+      search_card(sc_html)          
       
     space(10)
     footer()
@@ -835,12 +815,7 @@ if menu_id=='General Search':
                 link_to_env_heading="Link to Environment: ", link_to_env=env_link, source_heading = "Source: ", source=env_source)
               else:
                 expander(highlight_literal(match, i), match["English Chapter Title"].iloc[i], match["eng_verse_nb"].iloc[i],match["arabic_verse"].iloc[i],
-                "No")
-          space(5)
-          col1, col2, col3 = st.columns([1.5,1,1])
-          if col2.button('Show References'):
-            st.table(references_df)
-            
+                "No")            
     
     elif search_type == "Stem Search":
       if len(search) != 0:
@@ -902,10 +877,6 @@ if menu_id=='General Search':
               expander(highlight_stem(quran_df_filtered, "normalized_verse_for_highlight", i, query_normalized_one_list), 
               quran_df_filtered["English Chapter Title"].iloc[i], quran_df_filtered["eng_verse_nb"].iloc[i], quran_df_filtered["arabic_verse"].iloc[i],
               "No")
-        space(5)
-        col1, col2, col3 = st.columns([1.5,1,1])
-        if col2.button('Show References'):
-          st.table(references_df)  
     
     space(10)
     footer()
@@ -1145,10 +1116,6 @@ if menu_id=='General Search':
               else:
                 expander(highlight_literal(match, i), match["Arabic Chapter Title"].iloc[i], match["arabic_verse_nb"].iloc[i],match["eng_verse"].iloc[i],
                 "كلا")
-          space(5)
-          col1, col2, col3 = st.columns([1.5,1,1])
-          if col2.button('Show References'):
-            st.table(references_df)   
 
     elif search_type == 'بحث بأصل الكلمة':
       space(1,col3)
@@ -1205,10 +1172,6 @@ if menu_id=='General Search':
               expander(highlight_stem(quran_df_filtered, "normalized_verse_for_highlight", i, query_normalized_one_list), 
               quran_df_filtered["Arabic Chapter Title"].iloc[i], quran_df_filtered["arabic_verse_nb"].iloc[i], quran_df_filtered["eng_verse"].iloc[i],
               "كلا")
-        space(5)
-        col1, col2, col3 = st.columns([1.5,1,1])
-        if col2.button('Show References'):
-          st.table(references_df)   
         
       if len(search) != 0 and stem_type=="الجذر مع زيادات":
         # query preprocessing
@@ -1258,10 +1221,6 @@ if menu_id=='General Search':
               expander(highlight_stem(quran_df_filtered, "lemmatized_verse_for_highlight", i, query_lemmatized_one_list), 
               quran_df_filtered["Arabic Chapter Title"].iloc[i], quran_df_filtered["arabic_verse_nb"].iloc[i], quran_df_filtered["eng_verse"].iloc[i],
               "كلا")        
-        space(5)
-        col1, col2, col3 = st.columns([1.5,1,1])
-        if col2.button('Show References'):
-          st.table(references_df)   
     space(10)
     footer()
 
@@ -1315,6 +1274,9 @@ button:hover, a:hover {{
 </html>
 """, unsafe_allow_html=True)
 
+if menu_id=='References':
+  st.table(references_df)
+
 if menu_id=='Contact Us':
     col1,col2,col3 = st.columns([1.3,1,1])
     col2.title("**Meet Our Team**")
@@ -1343,7 +1305,7 @@ if menu_id=='Contact Us':
     with col3:
         profile_card(photo="https://s.lecommercedulevant.com/storage/attachments/30/Wissam-Sammouri_253994_large.jpg",
         name="Dr. Wissam Sammouri",
-        title="Coordinator, Business Analytics<br> (MSBA) program",
+        title="Business Analytics<br> Expert",
         aub_page="https://www.aub.edu.lb/pages/profile.aspx?MemberId=ws42",
         email="mailto:ws42@aub.edu.lb",
         linkedin="https://www.linkedin.com/in/wissam-sammouri/",
@@ -1392,7 +1354,7 @@ button:hover, a:hover {
 <div class="card">
   <img src="https://media.licdn.com/dms/image/C4E03AQGYYhglXBeeSw/profile-displayphoto-shrink_800_800/0/1656601448671?e=1681344000&v=beta&t=UuVmSgL0uckt20iII2DHhdj9F_tBSKyR8GiD5kXi12A" alt="Mahdi Mohammad" style="width:100%; height:300px">
   <h1 style="font-size: 25px; color:green"><b>Mahdi Mohammad</b></h1>
-  <p style="color:black" class="title">Graduate<br>MS. in Business Analytics (MSBA)</p>
+  <p style="color:black" class="title">Graduate<br>MSc. in Business Analytics (MSBA)</p>
   <div style="margin: 24px 0;">
     <a href="https://www.linkedin.com/in/mahdi-mohammad-7b5034201/" target="_blank"><i class="fa fa-linkedin fa-lg"></i></a> 
   </div>
