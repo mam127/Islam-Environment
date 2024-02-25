@@ -1023,7 +1023,7 @@ if menu_id=='General Search':
     file = open('all_arabic_stop_words.txt', 'r', encoding='utf-8') 
     stopwords = file.read().splitlines()
 
-    stemmer = FarasaStemmer()
+    #stemmer = FarasaStemmer()
     arStem = ArabicLightStemmer()
 
     with col1:
@@ -1119,9 +1119,10 @@ if menu_id=='General Search':
 
     elif search_type == 'بحث بأصل الكلمة':
       space(1,col3)
-      stem_type = col3.radio("اختر نوع أصل الكلمة", ["الجذر مع زيادات", "الجذر"])
-      col3.caption("**الكلمة:** المُفْسِدونَ - **الجذر مع زيادات:** مُفْسِدٌ - **الجذر:** فَسَدَ")
-      if len(search) != 0 and stem_type=="الجذر":
+      #stem_type = col3.radio("اختر نوع أصل الكلمة", ["الجذر مع زيادات", "الجذر"])
+      #col3.caption("**الكلمة:** المُفْسِدونَ - **الجذر مع زيادات:** مُفْسِدٌ - **الجذر:** فَسَدَ")
+      #if len(search) != 0 and stem_type=="الجذر":
+      if len(search) != 0:
         # query preprocessing
         dediacritized_query = araby.strip_tashkeel(search)
         query_tokenized = araby.tokenize(dediacritized_query)
@@ -1130,8 +1131,8 @@ if menu_id=='General Search':
         query_normalized_list_of_lists=[]
         for token in query_cleaned:
           stem = arStem.light_stem(token)
-          query_normalized_list_of_lists.append(unique([stemmer.stem(token),arStem.get_stem(),arStem.get_root()]))
-      
+          #query_normalized_list_of_lists.append(unique([stemmer.stem(token),arStem.get_stem(),arStem.get_root()]))
+          query_normalized_list_of_lists.append(unique([arStem.get_stem(),arStem.get_root()]))
         query_normalized_one_list = sum(query_normalized_list_of_lists, [])
 
         #query_normalized_combined = " ".join(query_normalized_one_list)
@@ -1173,54 +1174,54 @@ if menu_id=='General Search':
               quran_df_filtered["Arabic Chapter Title"].iloc[i], quran_df_filtered["arabic_verse_nb"].iloc[i], quran_df_filtered["eng_verse"].iloc[i],
               "كلا")
         
-      if len(search) != 0 and stem_type=="الجذر مع زيادات":
-        # query preprocessing
-        dediacritized_query = araby.strip_tashkeel(search)
-        query_tokenized = araby.tokenize(dediacritized_query)
-        query_cleaned = unique(remove_stop_words(query_tokenized, stopwords))
+      # if len(search) != 0 and stem_type=="الجذر مع زيادات":
+      #   # query preprocessing
+      #   dediacritized_query = araby.strip_tashkeel(search)
+      #   query_tokenized = araby.tokenize(dediacritized_query)
+      #   query_cleaned = unique(remove_stop_words(query_tokenized, stopwords))
 
-        query_lemmatized_list_of_lists=[]
-        for token in query_cleaned:
-          query_lemmatized_list_of_lists.append([stemmer.stem(token)])
+      #   query_lemmatized_list_of_lists=[]
+      #   for token in query_cleaned:
+      #     query_lemmatized_list_of_lists.append([stemmer.stem(token)])
         
-        query_lemmatized_one_list = sum(query_lemmatized_list_of_lists, [])
+      #   query_lemmatized_one_list = sum(query_lemmatized_list_of_lists, [])
         
-        #query_lemmatized_combined = " ".join(query_lemmatized_one_list)
-        # filtering verses
-        def filtering_verses(elements_list):
-          elements_list = ast.literal_eval(elements_list)
-          for lemma in query_lemmatized_one_list:
-            if lemma in elements_list:
-              return True
-          return False
-        quran_df["filtering"] = quran_df["lemmatized_verse"].apply(filtering_verses)
-        quran_df_filtered = quran_df[quran_df["filtering"]==True]
+      #   #query_lemmatized_combined = " ".join(query_lemmatized_one_list)
+      #   # filtering verses
+      #   def filtering_verses(elements_list):
+      #     elements_list = ast.literal_eval(elements_list)
+      #     for lemma in query_lemmatized_one_list:
+      #       if lemma in elements_list:
+      #         return True
+      #     return False
+      #   quran_df["filtering"] = quran_df["lemmatized_verse"].apply(filtering_verses)
+      #   quran_df_filtered = quran_df[quran_df["filtering"]==True]
 
-        if len(quran_df_filtered)!=0:
-          number_of_matches=[]
-          number_of_different_words_matched = []
-          for i in range(len(quran_df_filtered)):
-            number_of_different_words_matched.append(len(find_match_stem(quran_df_filtered, "lemmatized_verse_for_highlight", i, query_lemmatized_list_of_lists)[0]))
-            number_of_matches.append(len(find_match_stem(quran_df_filtered, "lemmatized_verse_for_highlight", i, query_lemmatized_list_of_lists)[1]))
-          quran_df_filtered["number_of_different_matches"] = number_of_different_words_matched
-          quran_df_filtered["number_of_matches"] = number_of_matches
-          quran_df_filtered = quran_df_filtered.sort_values(by=["number_of_different_matches","number_of_matches"], ascending=[False,False])
+      #   if len(quran_df_filtered)!=0:
+      #     number_of_matches=[]
+      #     number_of_different_words_matched = []
+      #     for i in range(len(quran_df_filtered)):
+      #       number_of_different_words_matched.append(len(find_match_stem(quran_df_filtered, "lemmatized_verse_for_highlight", i, query_lemmatized_list_of_lists)[0]))
+      #       number_of_matches.append(len(find_match_stem(quran_df_filtered, "lemmatized_verse_for_highlight", i, query_lemmatized_list_of_lists)[1]))
+      #     quran_df_filtered["number_of_different_matches"] = number_of_different_words_matched
+      #     quran_df_filtered["number_of_matches"] = number_of_matches
+      #     quran_df_filtered = quran_df_filtered.sort_values(by=["number_of_different_matches","number_of_matches"], ascending=[False,False])
         
-        ar_info_card("عدد الآيات التي تم العثور عليها",quran_df_filtered.shape[0],"check")
+      #   ar_info_card("عدد الآيات التي تم العثور عليها",quran_df_filtered.shape[0],"check")
 
-        if len(quran_df_filtered) != 0:  
-          for i in range(len(quran_df_filtered)):
-            if environment_test(quran_df_filtered,i)==True:
-              env_concept, env_link, env_source = find_concept(quran_df_filtered,i)
-              expander(highlight_stem(quran_df_filtered, "lemmatized_verse_for_highlight", i, query_lemmatized_one_list), 
-              quran_df_filtered["Arabic Chapter Title"].iloc[i], quran_df_filtered["arabic_verse_nb"].iloc[i], quran_df_filtered["eng_verse"].iloc[i],
-              "نعم", concept_heading="المفهوم البيئي: ",concept=env_concept,
-              env_verse_heading="الكلمات البيئية في الآية: ",env_verse=highlight_search_on_env(quran_df_filtered,i),
-              link_to_env_heading="العلاقة مع البيئة: ", link_to_env=env_link, source_heading = "المصدر: ", source=env_source)
-            else:
-              expander(highlight_stem(quran_df_filtered, "lemmatized_verse_for_highlight", i, query_lemmatized_one_list), 
-              quran_df_filtered["Arabic Chapter Title"].iloc[i], quran_df_filtered["arabic_verse_nb"].iloc[i], quran_df_filtered["eng_verse"].iloc[i],
-              "كلا")        
+      #   if len(quran_df_filtered) != 0:  
+      #     for i in range(len(quran_df_filtered)):
+      #       if environment_test(quran_df_filtered,i)==True:
+      #         env_concept, env_link, env_source = find_concept(quran_df_filtered,i)
+      #         expander(highlight_stem(quran_df_filtered, "lemmatized_verse_for_highlight", i, query_lemmatized_one_list), 
+      #         quran_df_filtered["Arabic Chapter Title"].iloc[i], quran_df_filtered["arabic_verse_nb"].iloc[i], quran_df_filtered["eng_verse"].iloc[i],
+      #         "نعم", concept_heading="المفهوم البيئي: ",concept=env_concept,
+      #         env_verse_heading="الكلمات البيئية في الآية: ",env_verse=highlight_search_on_env(quran_df_filtered,i),
+      #         link_to_env_heading="العلاقة مع البيئة: ", link_to_env=env_link, source_heading = "المصدر: ", source=env_source)
+      #       else:
+      #         expander(highlight_stem(quran_df_filtered, "lemmatized_verse_for_highlight", i, query_lemmatized_one_list), 
+      #         quran_df_filtered["Arabic Chapter Title"].iloc[i], quran_df_filtered["arabic_verse_nb"].iloc[i], quran_df_filtered["eng_verse"].iloc[i],
+      #         "كلا")        
     space(10)
     footer()
 
