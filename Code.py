@@ -13,6 +13,11 @@ from farasa.stemmer import FarasaStemmer
 from tashaphyne.stemming import ArabicLightStemmer
 from spacy.lang.en.stop_words import STOP_WORDS
 from nltk.stem import PorterStemmer
+import tempfile
+
+# Create a temporary directory in a location with guaranteed write permissions
+temp_dir = tempfile.gettempdir()
+
 
 # Loading Dataset
 df = pd.read_excel("Quran.xlsx")
@@ -1023,7 +1028,7 @@ if menu_id=='General Search':
     file = open('all_arabic_stop_words.txt', 'r', encoding='utf-8') 
     stopwords = file.read().splitlines()
 
-    stemmer = FarasaStemmer()
+    stemmer = FarasaStemmer(temp_directory=temp_dir)
     arStem = ArabicLightStemmer()
 
     with col1:
