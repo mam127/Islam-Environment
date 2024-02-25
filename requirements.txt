@@ -7,7 +7,7 @@ regex==2022.1.18
 streamlit-lottie==0.0.3
 requests==2.27.1
 PyArabic==0.6.15
-farasapy==0.0.14
+farasapy==0.0.13
 tqdm==4.62.3
 Tashaphyne==0.3.6
 spacy>=2.2.0,<3.0.0
