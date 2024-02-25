@@ -1401,7 +1401,7 @@ button:hover, a:hover {
 </head>
 <body>
 <div class="card">
-  <img src="https://media.licdn.com/dms/image/D4E03AQGM8su3oI_9Rw/profile-displayphoto-shrink_800_800/0/1676227642710?e=1682553600&v=beta&t=mauFa6zJ_gEZ8b6phr5kbf5ExwjCvJ8k6kCV1TsjwHA" alt=Mrs. Sara Moussalli style="width:100%; height:300px">
+  <img src="https://media.licdn.com/dms/image/D4E03AQGM8su3oI_9Rw/profile-displayphoto-shrink_400_400/0/1676227644226?e=2147483647&v=beta&t=oumVdjU93rRKSDeoDiTgC7GmiQkb0vlicb7uzXLVCgU" alt=Mrs. Sara Moussalli style="width:100%; height:300px">
   <h1 style="font-size: 25px; color:green"><b>Mrs. Sara Moussalli</b></h1>
   <p style="color:black" class="title">Research Assistant<br> MA in Islamic Studies</p>
   <div style="margin: 24px 0;">
@@ -1450,7 +1450,7 @@ button:hover, a:hover {
 </head>
 <body>
 <div class="card">
-  <img src="https://media.licdn.com/dms/image/D4E03AQFfEIKCgChsbg/profile-displayphoto-shrink_800_800/0/1677054447083?e=1682553600&v=beta&t=Hp9XpCFdTQQRScYvNeshcdN5liK1jJATcqLTmYnMQGc" alt="Mohammad Tabaja" style="width:100%; height:300px">
+  <img src="https://sites.aub.edu.lb/outlook/files/2023/04/MohamadTabaja.jpg" alt="Mohammad Tabaja" style="width:100%; height:300px">
   <h1 style="font-size: 25px; color:green"><b>Mohammad Tabaja</b></h1>
   <p style="color:black" class="title">Graduate Student<br>MA in Islamic Studies at AUB</p>
   <div style="margin: 24px 0;">
