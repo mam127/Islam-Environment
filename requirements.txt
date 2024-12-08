@@ -2,7 +2,7 @@ streamlit==1.40.2
 pandas==2.2.1
 numpy==1.26.0
 hydralit==1.0.14
-hydralit-components==1.0.10
+hydralit-components==1.0.9
 regex==2022.1.18
 streamlit-lottie==0.0.3
 requests==2.27.1
