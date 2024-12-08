@@ -234,8 +234,6 @@ st.set_page_config(layout='wide', page_icon = "https://icon-library.com/images/e
 #                 """
 # st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
 
-space(5)
-
 # specify the primary menu definition
 menu_data = [
     {'id':"Environmental Search",'icon': "fa fa-search", 'label':"Environmental Search",'ttip':"Environmental Search"},
@@ -249,7 +247,7 @@ menu_id = hc.nav_bar(
     override_theme=over_theme,
     home_name='Home',
     hide_streamlit_markers=False,
-    sticky_nav=True, #at the top or not
+    sticky_nav=False, #at the top or not
     sticky_mode='sticky', #jumpy or not-jumpy, but sticky or pinned
 )
 
