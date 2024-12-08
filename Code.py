@@ -234,6 +234,8 @@ st.set_page_config(layout='wide', page_icon = "https://icon-library.com/images/e
 #                 """
 # st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
 
+space(5)
+
 # specify the primary menu definition
 menu_data = [
     {'id':"Environmental Search",'icon': "fa fa-search", 'label':"Environmental Search",'ttip':"Environmental Search"},
