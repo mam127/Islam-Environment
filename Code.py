@@ -1353,7 +1353,7 @@ button:hover, a:hover {
 </head>
 <body>
 <div class="card">
-  <img src="https://media.licdn.com/dms/image/C4E03AQGYYhglXBeeSw/profile-displayphoto-shrink_800_800/0/1656601450069?e=2147483647&v=beta&t=cHV2FkoiHiv19nIdDgDD06B3p5KSGF4AHDFYzfrc5tU" alt="Mahdi Mohammad" style="width:100%; height:300px">
+  <img src="https://media.licdn.com/dms/image/v2/D4D03AQFzVs5AuBMYbA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1718544070745?e=1739404800&v=beta&t=4mHpOokxDbRHfHHxxXQSTioaO1R4KfRQgvwHFvLv1yU" alt="Mahdi Mohammad" style="width:100%; height:300px">
   <h1 style="font-size: 25px; color:green"><b>Mahdi Mohammad</b></h1>
   <p style="color:black" class="title">Graduate<br>MSc. in Business Analytics (MSBA)</p>
   <div style="margin: 24px 0;">
